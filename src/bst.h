@@ -1,6 +1,6 @@
 #ifndef BST_H
 #define BST_H
-
+#include <stack>
 #include <iostream>
 using namespace std;
 
@@ -28,6 +28,63 @@ struct BST
     const string name;
     int count;
 
+    struct iterator {
+
+    stack<Node*> stk;
+
+    iterator() {}
+    
+    iterator(Node* root) 
+    {
+    Node* current = root;
+    while (current != nullptr) {
+        stk.push(current);
+        current = current->left;
+    }
+    }
+
+    bool operator==(const iterator& other) 
+    {
+        return stk.empty() == other.stk.empty();
+    }
+
+    Node* operator->() 
+    {
+        return stk.top();
+    }
+    
+    string operator*() 
+    {
+        return stk.top()-> key;
+    }
+    
+    iterator& operator++() 
+    {
+        Node* current = stk.top();
+        stk.pop();
+        current = current -> right;
+        while (current != nullptr)
+        {
+            stk.push(current);
+            current = current -> left;
+        }
+        return *this;
+    }
+    iterator operator++(int) 
+    {
+        iterator old = *this;
+        ++(*this);
+        return old;
+    }
+    
+    bool operator!=(const iterator& other)
+    {
+        return stk.empty() != other.stk.empty();
+    }
+};
+    iterator begin() { return iterator(root); }
+    iterator end()   { return iterator(nullptr); }
+
     BST(const string & new_name)
         : root(nullptr), name(new_name), count(0) { }
 
@@ -39,15 +96,13 @@ struct BST
     virtual int size() const { return count; }
     virtual int get_height() const = 0;
 
-    static void pre_order_print(ostream & out, Node * t);
-    static void in_order_print(ostream & out, Node * t);
-    static void post_order_print(ostream & out, Node * t);
+     void pre_order_print(ostream & out, Node * t);
+     void in_order_print(ostream & out, Node * t);
+     void post_order_print(ostream & out, Node * t);
 
-    void print(ostream & out) const
-    {
-        // pre_order_print(out, root);
-        in_order_print(out, root);
-        // post_order_print(out, root);
+    void print(ostream & out) {
+        for (auto e : *this)
+            out << e << ' ';
     }
 
     virtual ~BST(); // must delete any Nodes in the tree pointed to by root
@@ -63,5 +118,8 @@ void find_all_words(int k, string file_name, BST & L);
 void remove_all_words(int k, string file_name, BST & L);
 void measure_BST(string file_name, BST & L);
 void measure_BSTs(string input_file);
+
+#include "bstree.h"
+#include "avltree.h"
 
 #endif
