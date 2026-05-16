@@ -1,0 +1,1 @@
+/usr/bin/c++ CMakeFiles/main.dir/src/avltree.cpp.o CMakeFiles/main.dir/src/bst.cpp.o CMakeFiles/main.dir/src/bstree.cpp.o CMakeFiles/main.dir/src/main.cpp.o -o main 

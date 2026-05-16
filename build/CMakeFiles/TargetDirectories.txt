@@ -1,0 +1,3 @@
+/home/dattn10/ICS46-Spring2026-hw-6-DatNguyen06/build/CMakeFiles/main.dir
+/home/dattn10/ICS46-Spring2026-hw-6-DatNguyen06/build/CMakeFiles/edit_cache.dir
+/home/dattn10/ICS46-Spring2026-hw-6-DatNguyen06/build/CMakeFiles/rebuild_cache.dir
