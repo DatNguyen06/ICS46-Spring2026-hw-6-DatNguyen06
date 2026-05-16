@@ -124,21 +124,24 @@ void remove_all_words(int k, string file_name, BST & L)
 
 void measure_BST(string file_name, BST & L)
 {
-    cout << L.name << ' ';
-    for (int i = 1; i <= 10; ++i)
-    {
-        cout << "\ti = " << i << ' ';
-        insert_all_words(i, file_name, L);
-        find_all_words(i, file_name, L);
-        remove_all_words(i, file_name, L);
-        if (!L.is_empty()) error(L.name, "is not empty");
-    }
+    insert_all_words(10, file_name, L);
+    find_all_words(10, file_name, L);
+    remove_all_words(10, file_name, L);
+    if (!L.is_empty()) error(L.name, "is not empty");
 }
 
 void measure_BSTs(string input_file)
 {
-    BSTree bst;
-    AVLTree avl;
-    measure_BST(input_file, bst);
-    measure_BST(input_file, avl);
+    for (int i = 1; i <= 10; ++i)
+    {
+        BSTree bst;
+        AVLTree avl;
+        cout << "\ti = " << i << ' ';
+        insert_all_words(i, input_file, bst);
+        find_all_words(i, input_file, bst);
+        remove_all_words(i, input_file, bst);
+        insert_all_words(i, input_file, avl);
+        find_all_words(i, input_file, avl);
+        remove_all_words(i, input_file, avl);
+    }
 }
