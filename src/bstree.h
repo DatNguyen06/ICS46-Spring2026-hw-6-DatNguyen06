@@ -12,6 +12,7 @@ class BSTree
     static Node * delete_node(Node * t, string key);
     static int compute_height(Node * t);
 public:
+    using iterator = BST::iterator;
     BSTree();
     void insert(const string & key);
     bool find(const string & key) const;
