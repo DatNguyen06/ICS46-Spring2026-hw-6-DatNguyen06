@@ -86,11 +86,8 @@ Node * BSTree::delete_node(Node * t, string key)
 
 void BSTree::remove(const string & key)
 {
-    if (find(key))
-    {
-        root = delete_node(root, key);
-        count--;
-    }
+    root = delete_node(root, key);
+    count--;
 }
 int BSTree::compute_height(Node * t)
 {

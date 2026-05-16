@@ -132,11 +132,8 @@ Node * AVLTree::delete_node(Node * t, string key)
 
 void AVLTree::remove(const string & key)
 {
-    if (find(key))
-    {
-        root = delete_node(root, key);
-        count--;
-    }
+    root = delete_node(root, key);
+    count--;
 }
 bool AVLTree::is_empty() const
 {
