@@ -111,15 +111,17 @@ Node * AVLTree::delete_node(Node * t, string key)
 
     else if (t -> right != nullptr) 
     {
-      temp = t -> right;
-      delete t;
-      return temp;
+        temp = t -> right;
+        delete t;
+        set_height(temp);
+        return rebalance(temp);
     }
     else if (t -> left != nullptr)
     {
-      temp = t -> left;
-      delete t;
-      return temp;
+        temp = t -> left;
+        delete t;
+        set_height(temp);
+        return rebalance(temp);
     }
   }
 
