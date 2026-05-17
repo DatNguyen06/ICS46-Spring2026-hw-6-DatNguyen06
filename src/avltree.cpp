@@ -62,7 +62,7 @@ Node * AVLTree::insert_node(Node * t, string key)
 {
     if (t == nullptr) return new Node(key);
     if (t -> key < key) t -> right = insert_node(t -> right, key);
-    if (t -> key > key) t -> left = insert_node(t -> left, key);
+    else if (t -> key > key) t -> left = insert_node(t -> left, key);
     set_height(t);
     return rebalance(t);
 }
@@ -124,7 +124,7 @@ Node * AVLTree::delete_node(Node * t, string key)
   }
 
     if (t -> key < key) t -> right = delete_node(t->right, key);
-    if (t -> key > key) t -> left = delete_node(t->left, key);
+    else if (t -> key > key) t -> left = delete_node(t->left, key);
 
     set_height(t);
     return rebalance(t);
@@ -132,9 +132,12 @@ Node * AVLTree::delete_node(Node * t, string key)
 
 void AVLTree::remove(const string & key)
 {
-    root = delete_node(root, key);
-    count--;
+    if (find_node(root, key) != nullptr) {
+        root = delete_node(root, key);
+        count--;
+    }
 }
+
 bool AVLTree::is_empty() const
 {
     if (root == nullptr) return 1;

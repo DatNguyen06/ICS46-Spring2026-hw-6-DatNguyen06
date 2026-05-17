@@ -114,6 +114,7 @@ void remove_all_words(int k, string file_name, BST & L)
 
     for (int i = 0; i < words_to_remove; i++)
     {
+        if (L.is_empty()) break;
         in >> word;
         L.remove(word);
     }
@@ -121,27 +122,28 @@ void remove_all_words(int k, string file_name, BST & L)
     t.elapsedUserTime(elapsed);
     cout << elapsed << ' ';
 }
-
 void measure_BST(string file_name, BST & L)
 {
-    insert_all_words(10, file_name, L);
-    find_all_words(10, file_name, L);
-    remove_all_words(10, file_name, L);
-    if (!L.is_empty()) error(L.name, "is not empty");
+    cout << L.name << endl;
+
+    for (int k = 1; k <= 10; ++k)
+    {
+        cout << "\tK = " << k << endl;
+
+        insert_all_words(k, file_name, L);
+        find_all_words(k, file_name, L);
+        remove_all_words(k, file_name, L);
+
+        if (!L.is_empty())
+            error(L.name, "is not empty");
+    }
 }
 
 void measure_BSTs(string input_file)
 {
-    for (int i = 1; i <= 10; ++i)
-    {
-        BSTree bst;
-        AVLTree avl;
-        cout << "\ti = " << i << ' ';
-        insert_all_words(i, input_file, bst);
-        find_all_words(i, input_file, bst);
-        remove_all_words(i, input_file, bst);
-        insert_all_words(i, input_file, avl);
-        find_all_words(i, input_file, avl);
-        remove_all_words(i, input_file, avl);
-    }
+    BSTree bst;
+    AVLTree avl;
+
+    measure_BST(input_file, bst);
+    measure_BST(input_file, avl);
 }

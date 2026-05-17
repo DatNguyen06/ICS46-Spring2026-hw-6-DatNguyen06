@@ -40,7 +40,7 @@ bool BSTree::find(const string & key) const
 Node * BSTree::left_most(Node * t)
 {
   if (t -> left == nullptr) return t;
-  if (t -> left != nullptr) return left_most(t -> left);
+  return left_most(t -> left);
 }
 
 
@@ -86,9 +86,12 @@ Node * BSTree::delete_node(Node * t, string key)
 
 void BSTree::remove(const string & key)
 {
-    root = delete_node(root, key);
-    count--;
+    if (find_node(root, key) != nullptr) {
+        root = delete_node(root, key);
+        count--;
+    }
 }
+
 int BSTree::compute_height(Node * t)
 {
   if ( t == nullptr) return 0;

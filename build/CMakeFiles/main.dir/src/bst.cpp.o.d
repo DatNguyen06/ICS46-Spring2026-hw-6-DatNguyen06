@@ -156,6 +156,10 @@ CMakeFiles/main.dir/src/bst.cpp.o: \
  /usr/include/c++/13/bits/ostream.tcc /usr/include/c++/13/istream \
  /usr/include/c++/13/bits/istream.tcc \
  /home/dattn10/ICS46-Spring2026-hw-6-DatNguyen06/src/bst.h \
+ /usr/include/c++/13/stack /usr/include/c++/13/deque \
+ /usr/include/c++/13/bits/stl_uninitialized.h \
+ /usr/include/c++/13/bits/stl_deque.h /usr/include/c++/13/bits/deque.tcc \
+ /usr/include/c++/13/bits/stl_stack.h \
  /home/dattn10/ICS46-Spring2026-hw-6-DatNguyen06/src/bstree.h \
  /home/dattn10/ICS46-Spring2026-hw-6-DatNguyen06/src/avltree.h \
  /usr/include/c++/13/fstream /usr/include/c++/13/bits/codecvt.h \
