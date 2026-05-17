@@ -144,6 +144,6 @@ void measure_BSTs(string input_file)
     BSTree bst;
     AVLTree avl;
 
-    measure_BST(input_file, bst);
     measure_BST(input_file, avl);
+    measure_BST(input_file, bst);
 }
