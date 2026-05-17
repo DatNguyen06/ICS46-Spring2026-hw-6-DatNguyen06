@@ -90,44 +90,37 @@ bool AVLTree::find(const string & key) const
 
 Node * AVLTree::delete_node(Node * t, string key)
 {
-    Node * temp = nullptr;
     if (t == nullptr) return nullptr;
 
-    if (t -> key == key)
-  {
-    if (t -> right == nullptr && t -> left == nullptr)
+    if (t->key == key)
     {
-      delete t;
-      return nullptr;
+        if (t->right == nullptr && t->left == nullptr)
+        {
+            delete t;
+            return nullptr;
+        }
+        else if (t->right != nullptr && t->left != nullptr)
+        {
+            Node * temp = t->right;
+            while (temp->left != nullptr) temp = temp->left;
+            t->key = temp->key;
+            t->right = delete_node(t->right, temp->key);
+        }
+        else if (t->right != nullptr)
+        {
+            Node * temp = t->right;
+            delete t;
+            return rebalance(temp);
+        }
+        else
+        {
+            Node * temp = t->left;
+            delete t;
+            return rebalance(temp);
+        }
     }
-    else if (t-> right != nullptr && t -> left != nullptr)
-    {
-        Node * temp = t->right;
-        while (temp->left != nullptr) temp = temp->left;
-        t -> key = temp -> key;
-        t -> right = delete_node(t -> right, temp -> key);
-        set_height(t);
-        return rebalance(t);
-    }
-
-    else if (t -> right != nullptr) 
-    {
-        temp = t -> right;
-        delete t;
-        set_height(temp);
-        return rebalance(temp);
-    }
-    else if (t -> left != nullptr)
-    {
-        temp = t -> left;
-        delete t;
-        set_height(temp);
-        return rebalance(temp);
-    }
-  }
-
-    if (t -> key < key) t -> right = delete_node(t->right, key);
-    else if (t -> key > key) t -> left = delete_node(t->left, key);
+    if (t->key < key) t->right = delete_node(t->right, key);
+    else if (t->key > key) t->left = delete_node(t->left, key);
 
     set_height(t);
     return rebalance(t);
