@@ -73,7 +73,12 @@ struct BST
             if (stk.empty() != other.stk.empty()) return false;
             return stk.top() == other.stk.top();
         }
-        bool operator!=(const iterator& other) { return stk.empty() != other.stk.empty(); }
+        bool operator!=(const iterator& other) 
+        {
+            if (stk.empty() && other.stk.empty()) return false;
+            if (stk.empty() != other.stk.empty()) return true;
+            return stk.top() != other.stk.top();
+        }
     };
 
     iterator begin() { return iterator(root, this); }
