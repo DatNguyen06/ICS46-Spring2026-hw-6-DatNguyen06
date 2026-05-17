@@ -48,7 +48,7 @@ struct BST
         
         string operator*() { return stk.top()->key; }
         
-        Node* operator->() { return stk.top(); }
+        const string* operator->() const { return &(stk.top()->key); }
         
         iterator& operator++() {
             Node* current = stk.top();
@@ -67,7 +67,12 @@ struct BST
             return old;
         }
         
-        bool operator==(const iterator& other) { return stk.empty() == other.stk.empty(); }
+        bool operator==(const iterator& other) 
+        {
+            if (stk.empty() && other.stk.empty()) return true;
+            if (stk.empty() != other.stk.empty()) return false;
+            return stk.top() == other.stk.top();
+        }
         bool operator!=(const iterator& other) { return stk.empty() != other.stk.empty(); }
     };
 
