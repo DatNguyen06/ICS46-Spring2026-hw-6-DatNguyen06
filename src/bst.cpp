@@ -122,28 +122,28 @@ void remove_all_words(int k, string file_name, BST & L)
     t.elapsedUserTime(elapsed);
     cout << elapsed << ' ';
 }
+
 void measure_BST(string file_name, BST & L)
 {
-    cout << L.name << endl;
-
-    for (int k = 1; k <= 10; ++k)
-    {
-        cout << "\tK = " << k << endl;
-
-        insert_all_words(k, file_name, L);
-        find_all_words(k, file_name, L);
-        remove_all_words(k, file_name, L);
-
-        if (!L.is_empty())
-            error(L.name, "is not empty");
-    }
+    insert_all_words(10, file_name, L);
+    find_all_words(10, file_name, L);
+    remove_all_words(10, file_name, L);
+    if (!L.is_empty())
+        error(L.name, "is not empty");
 }
 
 void measure_BSTs(string input_file)
 {
-    BSTree bst;
-    AVLTree avl;
-
-    measure_BST(input_file, avl);
-    measure_BST(input_file, bst);
+    for (int k = 1; k <= 10; ++k)
+    {
+        AVLTree avl;
+        BSTree bst;
+        cout << "\tK = " << k << endl;
+        insert_all_words(k, input_file, avl);
+        find_all_words(k, input_file, avl);
+        remove_all_words(k, input_file, avl);
+        insert_all_words(k, input_file, bst);
+        find_all_words(k, input_file, bst);
+        remove_all_words(k, input_file, bst);
+    }
 }
