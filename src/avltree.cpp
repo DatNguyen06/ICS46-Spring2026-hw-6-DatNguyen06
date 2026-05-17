@@ -69,10 +69,8 @@ Node * AVLTree::insert_node(Node * t, string key)
 
 void AVLTree::insert(const string & key)
 {
-    if (find_node(root, key) == nullptr) {
-        root = insert_node(root, key);
-        count++;
-    }
+    root = insert_node(root, key);
+    count++;
 }
 
 Node * AVLTree::find_node(Node * t, string key)

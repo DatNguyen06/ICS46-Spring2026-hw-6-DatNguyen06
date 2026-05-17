@@ -50,8 +50,16 @@ struct BST
         
         const string* operator->() const { return &(stk.top()->key); }
         
-        iterator& operator++() {
+        iterator& operator++() 
+        {
+            if (stk.empty()) return *this;
+            Node* current = stk.top();
             stk.pop();
+            current = current->right;
+            while (current != nullptr) {
+                stk.push(current);
+                current = current->left;
+            }
             return *this;
         }
         
