@@ -18,8 +18,10 @@ Node * BSTree::insert_node(Node * t, string key) {
 
 void BSTree::insert(const string & key)
 {
-  root = insert_node(root, key);
-  count++;
+    if (find_node(root, key) == nullptr) {
+        root = insert_node(root, key);
+        count++;
+    }
 }
 
 Node * BSTree::find_node(Node * t, string key)
